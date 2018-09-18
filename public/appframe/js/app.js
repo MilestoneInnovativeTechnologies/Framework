@@ -52186,7 +52186,7 @@ var actions = {
             dispatch = _ref.dispatch;
         var to = _ref2.to;
 
-        commit('increment');commit('addRoute', to);if (!state.count) return;
+        commit('increment');commit('addRoute', to);if (!state.count || _.includes(discardRoutes, to.name)) return;
         if (to.name === 'menu-action') commit('addNewSet', rootGetters.resources[rootGetters.actionResource(to.params.action)]);
         dispatch('addToSet', to);
     },
@@ -52256,6 +52256,8 @@ function isRouteObjectsEqual(Obj1, Obj2) {
     });
     return equal;
 }
+
+var discardRoutes = ['form-submit-new', 'form-submit-update'];
 
 /***/ }),
 /* 60 */
@@ -59551,11 +59553,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         }
     },
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapMutations"])('FORM', ['delFormSubmitData', 'reset']), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])(['navigate']), {
-        ClearFormSubmitAndNavigate: function ClearFormSubmitAndNavigate() {
-            this.delFormSubmitData(this.form);this.reset(this.form);
+        LeavePage: function LeavePage() {
             if (this.route.record) this.$router.go(-2);else this.navigate({ name: 'menu-action', params: { action: this.route.action } });
         }
-    })
+    }),
+    beforeDestroy: function beforeDestroy() {
+        this.delFormSubmitData(this.form);this.reset(this.form);
+    }
 });
 
 /***/ }),
@@ -59577,7 +59581,7 @@ var render = function() {
               content: "Form submitted successfully",
               icon: "thumbs-up"
             },
-            on: { click: _vm.ClearFormSubmitAndNavigate }
+            on: { click: _vm.LeavePage }
           })
         : _vm._e(),
       _vm._v(" "),
