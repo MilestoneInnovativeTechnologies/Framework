@@ -51345,9 +51345,6 @@ var vuexModules = {
     'ACTN': 'actions',
     'PTTL': 'pagetitle',
     'HSTR': 'history'
-
-    // 'MACT': 'menuaction',
-    // 'ACTN': 'appaction',
 };
 
 var modules = _extends({}, _.mapValues(vuexModules, function (Path) {
