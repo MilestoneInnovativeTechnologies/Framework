@@ -52267,9 +52267,8 @@ var state = {
     detail: {},
     layout: {},
     selected: {},
-    actions: {},
     handler: {
-        'ListData': ['setDetail', 'setActions'],
+        'ListData': 'setDetail',
         'ListLayout': 'setLayout',
         'List': 'mergeList'
     }
@@ -52281,30 +52280,12 @@ var actions = {
             dispatch = _ref.dispatch;
 
         dispatch('post', { action: action, update: true }, { root: true });
-    },
-    setActions: function setActions(_ref2, _ref3) {
-        var rootGetters = _ref2.rootGetters,
-            commit = _ref2.commit;
-        var _response_data = _ref3._response_data;
-
-        var id = _.keys(_response_data.List)[0],
-            actions = [];
-        _.forEach(rootGetters._actions, function (action) {
-            if (action.lists && !_.isEmpty(action.lists)) {
-                _.forEach(action.lists, function (list) {
-                    if (list.resource_list == id) {
-                        actions.push(list.resource_action);
-                    }
-                });
-            }
-        });
-        commit('setActions', { list: id, actions: actions });
     }
 };
 
 var mutations = {
-    mergeList: function mergeList(state, _ref4) {
-        var List = _ref4.List;
+    mergeList: function mergeList(state, _ref2) {
+        var List = _ref2.List;
 
         var id = _.keys(List)[0],
             Obj = {};Obj[id] = [];
@@ -52313,23 +52294,18 @@ var mutations = {
         }
         if (_.isEmpty(List[id])) return;state.lists[id] = Object.assign({}, state.lists[id], _.keyBy(List[id], 'id'));
     },
-    setDetail: function setDetail(state, _ref5) {
-        var ListData = _ref5.ListData;
+    setDetail: function setDetail(state, _ref3) {
+        var ListData = _ref3.ListData;
         state.detail = Object.assign({}, state.detail, ListData);
     },
-    setLayout: function setLayout(state, _ref6) {
-        var ListLayout = _ref6.ListLayout;
+    setLayout: function setLayout(state, _ref4) {
+        var ListLayout = _ref4.ListLayout;
         state.layout = Object.assign({}, state.layout, ListLayout);
     },
-    setSelected: function setSelected(state, _ref7) {
-        var list = _ref7.list,
-            record = _ref7.record;
+    setSelected: function setSelected(state, _ref5) {
+        var list = _ref5.list,
+            record = _ref5.record;
         state.selected[list] = record;
-    },
-    setActions: function setActions(state, _ref8) {
-        var list = _ref8.list,
-            actions = _ref8.actions;
-        var action = {};action[list] = actions;state.actions = Object.assign({}, state.actions, action);
     }
 };
 
@@ -52352,11 +52328,6 @@ var getters = {
     selected: function selected(state) {
         return function (id) {
             return state.selected[id];
-        };
-    },
-    actions: function actions(state) {
-        return function (id) {
-            return state.actions[id];
         };
     }
 };
