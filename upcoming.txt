@@ -1,0 +1,10 @@
+Right sidebar for list
+	If resource default have update and the current page list is default list, then right sidebar will come with editable form and data within it
+	
+Floating add button
+	If resource default have add and the current page list is default list, then a floating add button will display tobottom right cornor
+
+User Group should have parent child hierarchy and a child level
+	This hierarchy and level can be used to list or display data after authorization
+
+	
