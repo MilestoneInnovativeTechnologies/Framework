@@ -23,5 +23,8 @@
         "vue-axios": "^2.1.2",
         "vue-router": "^3.0.1",
         "vue-graph": "^0.4.2"
+    },
+    "dependencies": {
+        "npm": "^6.4.1"
     }
 }
