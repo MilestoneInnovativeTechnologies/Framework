@@ -16,7 +16,9 @@ yarn-error.log
 .example
 /app/Packages
 /resources
-
+composer.lock
+package-lock.json
+.editorconfig
 
 
 # Created by https://www.gitignore.io/api/phpstorm
