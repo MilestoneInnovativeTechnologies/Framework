@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'brand_text' => 'Milestone',
+    'brand_text' => 'APPFRAME',
 
     /*
     |--------------------------------------------------------------------------
@@ -60,5 +60,18 @@ return [
     |
     */
 
-    'page_description' => "",
+    'page_description' => '',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Root Path
+    |--------------------------------------------------------------------------
+    |
+    | The path to which the application installed.
+    | If installed to root, no need to update
+    | Else give the path
+    |
+    */
+
+    'root_path' => '',
 ];
